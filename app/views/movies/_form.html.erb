@@ -10,20 +10,19 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :director_id %><br>
-    <%= f.select :director_id , @directors %>
-  </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.select :category_id , @categories %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label "Nome" %><br>
+      <%= f.text_field :name, class: "form-control "%>
+    </div>
+    <div class="field">
+      <%= f.label "Diretor" %><br>
+      <%= f.select :director_id , @directors,{prompt:"Selecione"}, {class: "form-control"} %>
+    </div>
+    <div class="field">
+      <%= f.label "Categoria" %><br>
+      <%= f.select :category_id , @categories,{prompt:"Selecione"}, {class: "form-control"} %>
+    </div><br>
+    <div class="actions">
+      <%= f.submit "Salvar", class: "btn btn-success btn-sm" %>
+    </div>
 <% end %>
