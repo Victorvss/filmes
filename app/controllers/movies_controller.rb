@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_directors, only: [:new, :edit]
 
   # GET /movies
   # GET /movies.json
@@ -15,6 +16,7 @@ class MoviesController < ApplicationController
   # GET /movies/new
   def new
     @movie = Movie.new
+    @directors = Director.all.collect{|director|[director.name, director.id]}
   end
 
   # GET /movies/1/edit
@@ -62,6 +64,11 @@ class MoviesController < ApplicationController
   end
 
   private
+
+    def set_directors
+      @directors = Director.all.collect{|director|[director.name, director.id]}
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
       @movie = Movie.find(params[:id])
@@ -69,6 +76,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:name)
+      params.require(:movie).permit(:name, :director_id)
     end
 end
